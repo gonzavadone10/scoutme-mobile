@@ -1,98 +1,166 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { router } from "expo-router";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <View style={styles.header}>
+        <Text style={styles.logo}>SCOUTME</Text>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <Text style={styles.title}>Descubrí tu potencial</Text>
+
+        <Text style={styles.subtitle}>
+          Consultá perfiles, revisá estadísticas y compará jugadores desde tu celular.
+        </Text>
+
+        <TouchableOpacity
+          style={styles.primaryButton}
+          onPress={() => router.push("/create-profile")}
+        >
+          <Text style={styles.primaryButtonText}>
+            Crear mi perfil deportivo
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Accesos rápidos</Text>
+
+        <TouchableOpacity style={styles.optionCard} onPress={() => router.push("/my-profile")}>
+          <Text style={styles.optionTitle}>👤 Mi perfil deportivo</Text>
+        
+          <Text style={styles.optionText}>
+            Consultá y actualizá tu información como jugador.
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.optionCard}
+          onPress={() => router.push("/stats")}
+        >
+          <Text style={styles.optionTitle}>📊 Cargar estadísticas</Text>
+          <Text style={styles.optionText}>
+            Registrá partidos, goles, asistencias y minutos jugados.
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.optionCard}
+          onPress={() => router.push("/jugadores")}
+        >
+          <Text style={styles.optionTitle}>⚽ Ver jugadores</Text>
+          <Text style={styles.optionText}>
+            Explorá perfiles deportivos disponibles para scouting.
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.optionCard}>
+          <Text style={styles.optionTitle}>⚔️ Comparar jugadores</Text>
+          <Text style={styles.optionText}>
+            Analizá el rendimiento entre dos perfiles deportivos.
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Diferencial ScoutMe</Text>
+
+        <View style={styles.infoCard}>
+          <Text style={styles.infoTitle}>✓ Datos deportivos organizados</Text>
+          <Text style={styles.infoText}>
+            A diferencia de una red social, ScoutMe ordena perfiles, estadísticas
+            y validaciones para facilitar el trabajo de scouts y entrenadores.
+          </Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#071a2d",
   },
-  stepContainer: {
-    gap: 8,
+  content: {
+    padding: 20,
+    paddingBottom: 20,
+  },
+  header: {
+    backgroundColor: "#0b4ea2",
+    borderRadius: 24,
+    padding: 24,
+    marginTop: 40,
+    marginBottom: 24,
+  },
+  logo: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "800",
+    marginBottom: 18,
+    letterSpacing: 1,
+  },
+  title: {
+    color: "#ffffff",
+    fontSize: 30,
+    fontWeight: "800",
+    marginBottom: 12,
+  },
+  subtitle: {
+    color: "rgba(255,255,255,0.85)",
+    fontSize: 15,
+    lineHeight: 22,
+    marginBottom: 20,
+  },
+  primaryButton: {
+    backgroundColor: "#1694ff",
+    paddingVertical: 14,
+    borderRadius: 14,
+    alignItems: "center",
+  },
+  primaryButtonText: {
+    color: "#ffffff",
+    fontWeight: "800",
+    fontSize: 16,
+  },
+  section: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    color: "#ffffff",
+    fontSize: 22,
+    fontWeight: "800",
+    marginBottom: 14,
+  },
+  optionCard: {
+    backgroundColor: "rgba(255,255,255,0.1)",
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 12,
+  },
+  optionTitle: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "800",
+    marginBottom: 6,
+  },
+  optionText: {
+    color: "rgba(255,255,255,0.75)",
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  infoCard: {
+    backgroundColor: "rgba(34,197,94,0.14)",
+    borderRadius: 16,
+    padding: 16,
+  },
+  infoTitle: {
+    color: "#86efac",
+    fontWeight: "800",
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  infoText: {
+    color: "rgba(255,255,255,0.8)",
+    lineHeight: 20,
   },
 });
