@@ -1,33 +1,9 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { router, useFocusEffect } from "expo-router";
-import { useCallback, useState } from "react";
+import { router } from "expo-router";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
-type Perfil = {
-  nombre: string;
-  edad: string;
-  posicion: string;
-  club: string;
-  pie: string;
-  biografia: string;
-};
+import { obtenerMiPerfil } from "./store/profileStore";
 
 export default function MyProfileScreen() {
-  const [perfil, setPerfil] = useState<Perfil | null>(null);
-
-  useFocusEffect(
-    useCallback(() => {
-      const cargarPerfil = async () => {
-        const data = await AsyncStorage.getItem("miPerfil");
-
-        if (data) {
-          setPerfil(JSON.parse(data));
-        }
-      };
-
-      cargarPerfil();
-    }, [])
-  );
+  const perfil = obtenerMiPerfil();
 
   if (!perfil) {
     return (
@@ -94,13 +70,13 @@ export default function MyProfileScreen() {
       <View style={styles.infoCard}>
         <Text style={styles.infoTitle}>Perfil listo para scouting</Text>
         <Text style={styles.infoText}>
-          Tus datos deportivos ya se encuentran cargados. En una versión completa,
-          este perfil podría ser consultado por entrenadores y scouts.
+          Tu perfil deportivo fue cargado correctamente y puede ser visualizado
+          por entrenadores y scouts dentro de la plataforma.
         </Text>
       </View>
 
       <TouchableOpacity
-        style={styles.secondaryButton}
+        style={styles.button}
         onPress={() => router.push("/create-profile")}
       >
         <Text style={styles.buttonText}>Editar perfil</Text>
@@ -115,31 +91,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#071a2d",
   },
 
-  containerEmpty: {
-    flex: 1,
-    backgroundColor: "#071a2d",
-    padding: 20,
-    paddingTop: 70,
-  },
-
   content: {
     padding: 20,
     paddingTop: 60,
     paddingBottom: 110,
   },
 
-  backButton: {
-    backgroundColor: "#1694ff",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 14,
-    marginBottom: 20,
-    alignSelf: "flex-start",
-  },
-
-  backButtonText: {
-    color: "#fff",
-    fontWeight: "800",
+  containerEmpty: {
+    flex: 1,
+    backgroundColor: "#071a2d",
+    padding: 20,
+    paddingTop: 70,
   },
 
   kicker: {
@@ -152,19 +114,33 @@ const styles = StyleSheet.create({
 
   title: {
     color: "#fff",
-    fontSize: 30,
+    fontSize: 32,
     fontWeight: "800",
-    marginBottom: 16,
-  },
-
-  emptyText: {
-    color: "rgba(255,255,255,0.75)",
-    lineHeight: 22,
     marginBottom: 20,
   },
 
+  emptyText: {
+    color: "rgba(255,255,255,0.8)",
+    marginBottom: 20,
+    fontSize: 16,
+  },
+
+  backButton: {
+    backgroundColor: "#1694ff",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    alignSelf: "flex-start",
+    marginBottom: 20,
+  },
+
+  backButtonText: {
+    color: "#fff",
+    fontWeight: "700",
+  },
+
   validationCard: {
-    backgroundColor: "rgba(34,197,94,0.14)",
+    backgroundColor: "rgba(34,197,94,0.15)",
     borderRadius: 14,
     padding: 14,
     marginBottom: 20,
@@ -189,8 +165,8 @@ const styles = StyleSheet.create({
 
   value: {
     color: "#fff",
+    fontSize: 16,
     fontWeight: "700",
-    lineHeight: 21,
   },
 
   sectionTitle: {
@@ -202,10 +178,10 @@ const styles = StyleSheet.create({
   },
 
   infoCard: {
-    backgroundColor: "rgba(34,197,94,0.14)",
+    backgroundColor: "rgba(34,197,94,0.15)",
     borderRadius: 16,
     padding: 16,
-    marginBottom: 16,
+    marginBottom: 20,
   },
 
   infoTitle: {
@@ -216,22 +192,14 @@ const styles = StyleSheet.create({
 
   infoText: {
     color: "rgba(255,255,255,0.8)",
-    lineHeight: 20,
+    lineHeight: 22,
   },
 
   button: {
     backgroundColor: "#1694ff",
-    padding: 16,
     borderRadius: 14,
-    alignItems: "center",
-  },
-
-  secondaryButton: {
-    backgroundColor: "#1694ff",
     padding: 16,
-    borderRadius: 14,
     alignItems: "center",
-    marginTop: 6,
   },
 
   buttonText: {

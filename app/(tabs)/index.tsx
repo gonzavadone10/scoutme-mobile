@@ -28,7 +28,7 @@ export default function HomeScreen() {
 
         <TouchableOpacity style={styles.optionCard} onPress={() => router.push("/my-profile")}>
           <Text style={styles.optionTitle}>👤 Mi perfil deportivo</Text>
-        
+
           <Text style={styles.optionText}>
             Consultá y actualizá tu información como jugador.
           </Text>
@@ -54,7 +54,10 @@ export default function HomeScreen() {
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.optionCard}>
+        <TouchableOpacity
+          style={styles.optionCard}
+          onPress={() => router.push("/compare")}
+        >
           <Text style={styles.optionTitle}>⚔️ Comparar jugadores</Text>
           <Text style={styles.optionText}>
             Analizá el rendimiento entre dos perfiles deportivos.
