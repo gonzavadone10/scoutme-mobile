@@ -76,6 +76,23 @@ export default function HomeScreen() {
           </Text>
         </View>
       </View>
+
+      <Text style={styles.sectionTitle}>🏆 Jugadores destacados</Text>
+
+      <View style={styles.featuredCard}>
+        <Text style={styles.featuredName}>Matías Romero</Text>
+        <Text style={styles.featuredPosition}>Extremo derecho</Text>
+      </View>
+
+      <View style={styles.featuredCard}>
+        <Text style={styles.featuredName}>Joaquín Morales</Text>
+        <Text style={styles.featuredPosition}>Delantero centro</Text>
+      </View>
+
+      <View style={styles.featuredCard}>
+        <Text style={styles.featuredName}>Santiago López</Text>
+        <Text style={styles.featuredPosition}>Enganche</Text>
+      </View>
     </ScrollView>
   );
 }
@@ -166,4 +183,26 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,0.8)",
     lineHeight: 20,
   },
+
+
+
+featuredCard: {
+  backgroundColor: "rgba(255,255,255,0.1)",
+  borderRadius: 16,
+  padding: 16,
+  marginBottom: 12,
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.12)",
+},
+
+featuredName: {
+  color: "#fff",
+  fontSize: 18,
+  fontWeight: "800",
+},
+
+featuredPosition: {
+  color: "#cbd5e1",
+  marginTop: 4,
+},
 });

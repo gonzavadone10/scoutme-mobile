@@ -33,6 +33,12 @@ export default function MyProfileScreen() {
         <Text style={styles.backButtonText}>← Volver al inicio</Text>
       </TouchableOpacity>
 
+      <View style={styles.avatar}>
+        <Text style={styles.avatarText}>
+          {perfil.nombre.charAt(0).toUpperCase()}
+        </Text>
+      </View>
+
       <Text style={styles.kicker}>Perfil deportivo</Text>
       <Text style={styles.title}>{perfil.nombre}</Text>
 
@@ -63,6 +69,32 @@ export default function MyProfileScreen() {
       <View style={styles.card}>
         <Text style={styles.label}>Biografía</Text>
         <Text style={styles.value}>{perfil.biografia}</Text>
+      </View>
+
+      <Text style={styles.sectionTitle}>Estadísticas iniciales</Text>
+
+      <View style={styles.statsRow}>
+        <View style={styles.statCard}>
+          <Text style={styles.statNumber}>0</Text>
+          <Text style={styles.statLabel}>Goles</Text>
+        </View>
+
+        <View style={styles.statCard}>
+          <Text style={styles.statNumber}>0</Text>
+          <Text style={styles.statLabel}>Asist.</Text>
+        </View>
+      </View>
+
+      <View style={styles.statsRow}>
+        <View style={styles.statCard}>
+          <Text style={styles.statNumber}>0</Text>
+          <Text style={styles.statLabel}>Partidos</Text>
+        </View>
+
+        <View style={styles.statCard}>
+          <Text style={styles.statNumber}>0</Text>
+          <Text style={styles.statLabel}>Minutos</Text>
+        </View>
       </View>
 
       <Text style={styles.sectionTitle}>Estado del perfil</Text>
@@ -207,4 +239,45 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     fontSize: 16,
   },
+
+  avatar: {
+  width: 86,
+  height: 86,
+  borderRadius: 43,
+  backgroundColor: "#1694ff",
+  alignItems: "center",
+  justifyContent: "center",
+  marginBottom: 18,
+},
+
+avatarText: {
+  color: "#fff",
+  fontSize: 34,
+  fontWeight: "900",
+},
+
+statsRow: {
+  flexDirection: "row",
+  gap: 10,
+  marginBottom: 10,
+},
+
+statCard: {
+  flex: 1,
+  backgroundColor: "rgba(255,255,255,0.1)",
+  borderRadius: 14,
+  padding: 18,
+  alignItems: "center",
+},
+
+statNumber: {
+  color: "#fff",
+  fontSize: 24,
+  fontWeight: "800",
+},
+
+statLabel: {
+  color: "#cbd5e1",
+  marginTop: 4,
+},
 });
