@@ -3,15 +3,105 @@ import { useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const jugadores = [
-  { id: 1, nombre: "Matías Romero", goles: 12, asistencias: 7, partidos: 18, minutos: 840 },
-  { id: 2, nombre: "Franco Pérez", goles: 4, asistencias: 11, partidos: 20, minutos: 1020 },
-  { id: 3, nombre: "Lucas Torres", goles: 2, asistencias: 1, partidos: 21, minutos: 1150 },
-  { id: 4, nombre: "Tomás Aguirre", goles: 18, asistencias: 3, partidos: 19, minutos: 970 },
-  { id: 5, nombre: "Nicolás Silva", goles: 1, asistencias: 6, partidos: 16, minutos: 760 },
-  { id: 6, nombre: "Bruno Medina", goles: 0, asistencias: 0, partidos: 22, minutos: 1200 },
-  { id: 7, nombre: "Santiago López", goles: 9, asistencias: 10, partidos: 18, minutos: 930 },
-  { id: 8, nombre: "Agustín Herrera", goles: 1, asistencias: 5, partidos: 17, minutos: 880 },
-  { id: 9, nombre: "Joaquín Morales", goles: 15, asistencias: 4, partidos: 20, minutos: 1010 },
+  {
+    id: 1,
+    nombre: "Matías Romero",
+    posicion: "Extremo derecho",
+    club: "Club Atlético Norte",
+    validado: true,
+    goles: 12,
+    asistencias: 7,
+    partidos: 18,
+    minutos: 840,
+  },
+  {
+    id: 2,
+    nombre: "Franco Pérez",
+    posicion: "Volante central",
+    club: "Deportivo Sur",
+    validado: true,
+    goles: 4,
+    asistencias: 11,
+    partidos: 20,
+    minutos: 1020,
+  },
+  {
+    id: 3,
+    nombre: "Lucas Torres",
+    posicion: "Defensor central",
+    club: "Atlético Oeste",
+    validado: false,
+    goles: 2,
+    asistencias: 1,
+    partidos: 21,
+    minutos: 1150,
+  },
+  {
+    id: 4,
+    nombre: "Tomás Aguirre",
+    posicion: "Delantero centro",
+    club: "Barrio Norte FC",
+    validado: true,
+    goles: 18,
+    asistencias: 3,
+    partidos: 19,
+    minutos: 970,
+  },
+  {
+    id: 5,
+    nombre: "Nicolás Silva",
+    posicion: "Lateral izquierdo",
+    club: "Juventud Sur",
+    validado: false,
+    goles: 1,
+    asistencias: 6,
+    partidos: 16,
+    minutos: 760,
+  },
+  {
+    id: 6,
+    nombre: "Bruno Medina",
+    posicion: "Arquero",
+    club: "San Martín FC",
+    validado: true,
+    goles: 0,
+    asistencias: 0,
+    partidos: 22,
+    minutos: 1200,
+  },
+  {
+    id: 7,
+    nombre: "Santiago López",
+    posicion: "Enganche",
+    club: "Estrella del Sur",
+    validado: true,
+    goles: 9,
+    asistencias: 10,
+    partidos: 18,
+    minutos: 930,
+  },
+  {
+    id: 8,
+    nombre: "Agustín Herrera",
+    posicion: "Lateral derecho",
+    club: "Defensores Unidos",
+    validado: false,
+    goles: 1,
+    asistencias: 5,
+    partidos: 17,
+    minutos: 880,
+  },
+  {
+    id: 9,
+    nombre: "Joaquín Morales",
+    posicion: "Delantero centro",
+    club: "Atlético Barrio Sur",
+    validado: true,
+    goles: 15,
+    asistencias: 4,
+    partidos: 20,
+    minutos: 1010,
+  },
 ];
 
 export default function CompareScreen() {
@@ -51,6 +141,26 @@ export default function CompareScreen() {
           <Text style={styles.selectLabel}>Jugador 2</Text>
           <Text style={styles.selectName}>{player2.nombre}</Text>
         </TouchableOpacity>
+      </View>
+
+      <View style={styles.profileCards}>
+        <View style={styles.profileCard}>
+          <Text style={player1.validado ? styles.validated : styles.pending}>
+            {player1.validado ? "✓ Validado" : "Pendiente"}
+          </Text>
+          <Text style={styles.profileName}>{player1.nombre}</Text>
+          <Text style={styles.profileText}>{player1.posicion}</Text>
+          <Text style={styles.profileText}>{player1.club}</Text>
+        </View>
+
+        <View style={styles.profileCard}>
+          <Text style={player2.validado ? styles.validated : styles.pending}>
+            {player2.validado ? "✓ Validado" : "Pendiente"}
+          </Text>
+          <Text style={styles.profileName}>{player2.nombre}</Text>
+          <Text style={styles.profileText}>{player2.posicion}</Text>
+          <Text style={styles.profileText}>{player2.club}</Text>
+        </View>
       </View>
 
       <View style={styles.table}>
@@ -183,4 +293,38 @@ const styles = StyleSheet.create({
     color: "#86efac",
     fontWeight: "900",
   },
+  profileCards: {
+  gap: 12,
+  marginBottom: 20,
+},
+
+profileCard: {
+  backgroundColor: "rgba(255,255,255,0.1)",
+  borderRadius: 18,
+  padding: 16,
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.12)",
+},
+
+profileName: {
+  color: "#fff",
+  fontSize: 18,
+  fontWeight: "800",
+  marginTop: 8,
+},
+
+profileText: {
+  color: "rgba(255,255,255,0.75)",
+  marginTop: 4,
+},
+
+validated: {
+  color: "#86efac",
+  fontWeight: "800",
+},
+
+pending: {
+  color: "#fde68a",
+  fontWeight: "800",
+},
 });
