@@ -1,50 +1,49 @@
-# Welcome to your Expo app 👋
+# ScoutMe Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Descripción
 
-## Get started
+ScoutMe Mobile es la versión para dispositivos móviles de la plataforma ScoutMe.
 
-1. Install dependencies
+Permite a jugadores de fútbol amateur crear su perfil deportivo, cargar estadísticas y consultar información de otros jugadores desde una aplicación desarrollada con React Native.
 
-   ```bash
-   npm install
-   ```
+## Tecnologías utilizadas
 
-2. Start the app
+* React Native
+* Expo
+* Expo Router
+* AsyncStorage
+* TypeScript
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Instalación
 
 ```bash
-npm run reset-project
+git clone https://github.com/gonzavadone10/scoutme-mobile.git
+cd scoutme-mobile
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Ejecución
 
-## Learn more
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Funcionalidades
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+* Inicio
+* Mi Perfil Deportivo
+* Crear Perfil
+* Editar Perfil
+* Eliminar Perfil
+* Cargar Estadísticas
+* Jugadores
+* Perfil de Jugador
+* Comparador de Jugadores
 
-## Join the community
+## Almacenamiento
 
-Join our community of developers creating universal apps.
+La información de perfiles y estadísticas se almacena localmente mediante AsyncStorage.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Autor
+
+Proyecto académico desarrollado para Seminario Final - Analista en Sistemas.
